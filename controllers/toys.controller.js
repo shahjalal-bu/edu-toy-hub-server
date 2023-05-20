@@ -3,11 +3,13 @@ const { toysCollection } = require("../db");
 const { ObjectId } = require("mongodb");
 
 module.exports.findAll = async (req, res) => {
+  const limit = parseInt(req.query.limit);
+  console.log("params", req.query.limit);
   let query =
     req.params.categoryName.toLowerCase() === "all"
       ? {}
       : { Category: req.params.categoryName };
-  let toys = await toysCollection.find(query).toArray();
+  let toys = await toysCollection.find(query).limit(limit).toArray();
   res.send(toys);
 };
 
