@@ -4,6 +4,7 @@ const toysController = require("../controllers/toys.controller");
 
 router.get("/cat/:categoryName", toysController.findAllByCategory);
 router.get("/", toysController.findAll);
+router.get("/myproduct/:sellerEmail", toysController.findAllByEmail);
 router.get("/categorynames", toysController.findCategory);
 router.get("/:id", toysController.findById);
 router.post("/", toysController.insertOne);

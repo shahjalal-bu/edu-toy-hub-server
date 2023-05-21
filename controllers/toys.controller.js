@@ -23,6 +23,13 @@ module.exports.findAll = async (req, res) => {
   let toys = await toysCollection.find(query).limit(limit).toArray();
   res.send(toys);
 };
+//find all product by email
+module.exports.findAllByEmail = async (req, res) => {
+  let toys = await toysCollection
+    .find({ SellerEmail: req.params.sellerEmail })
+    .toArray();
+  res.send(toys);
+};
 
 //find single product with it
 module.exports.findById = async (req, res) => {
