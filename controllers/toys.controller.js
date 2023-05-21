@@ -2,13 +2,24 @@ const { query } = require("express");
 const { toysCollection } = require("../db");
 const { ObjectId } = require("mongodb");
 
-module.exports.findAll = async (req, res) => {
+//find all by category name
+module.exports.findAllByCategory = async (req, res) => {
   const limit = parseInt(req.query.limit);
   console.log("params", req.query.limit);
   let query =
     req.params.categoryName.toLowerCase() === "all"
       ? {}
       : { Category: req.params.categoryName };
+  let toys = await toysCollection.find(query).limit(limit).toArray();
+  res.send(toys);
+};
+//find all product
+module.exports.findAll = async (req, res) => {
+  const limit = parseInt(req.query.limit);
+  let query = {};
+  if (req.query.q) {
+    query = { Name: { $regex: req.query.q, $options: "i" } };
+  }
   let toys = await toysCollection.find(query).limit(limit).toArray();
   res.send(toys);
 };

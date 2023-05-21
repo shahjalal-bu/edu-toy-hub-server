@@ -14,6 +14,9 @@ const toysRouter = require("./routes/toys");
 //middleware
 app.use(express.json());
 app.use(cors());
+app.get("/", async (req, res) => {
+  res.send("Server running");
+});
 app.use("/toys", toysRouter);
 
 app.listen(port, () => {
