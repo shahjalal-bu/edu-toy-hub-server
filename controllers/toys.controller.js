@@ -28,7 +28,7 @@ module.exports.findAllByEmail = async (req, res) => {
   const pipeline = [
     {
       $match: {
-        SellerEmail: req.params.sellerEmail,
+        SellerEmail: req.params.selleremail,
       },
     },
     {

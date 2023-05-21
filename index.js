@@ -28,6 +28,12 @@ app.get("/", (req, res) => {
     }
   });
 });
+
+app.get("/deals", async (req, res) => {
+  const toys = await toysCollection.find({ dealsOfTheDay: true }).toArray();
+  res.send(toys);
+});
+
 app.use("/toys", toysRouter);
 
 app.listen(port, () => {
