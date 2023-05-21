@@ -12,21 +12,11 @@ Edutoyhub is a multi vendor ecommerce site.
 
 Project is created with:
 
-- "@smastrom/react-rating": "^1.3.1",
-- aos: "^2.3.4",
-- axios: "^1.4.0",
-- daisyui: "^2.51.6",
-- firebase: "^9.22.0",
-- react: "^18.2.0",
-- react-dom: "^18.2.0",
-- react-hook-form: "^7.43.9",
-- react-icons: "^4.8.0",
-- react-lazy-load" "^4.0.1",
-- react-photo-album: "^2.2.2",
-- react-router-dom: "^6.11.2",
-- react-tabs: "^6.0.1",
-- react-toastify: "^9.1.3",
-- sweetalert2: "^11.7.5"
+- "cors": "^2.8.5",
+- "dotenv": "^16.0.3",
+- "express": "^4.18.2",
+- "mongodb": "^5.5.0",
+- "nodemon": "^2.0.22"
 
 ## Setup
 
