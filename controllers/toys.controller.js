@@ -56,3 +56,20 @@ module.exports.findAndUpdate = async (req, res) => {
     res.status(500).send("Failed to update document");
   }
 };
+
+//delete operation
+
+module.exports.findByIdAndDelete = async (req, res) => {
+  try {
+    const result = await toysCollection.deleteOne({
+      _id: new ObjectId(req.params.id),
+    });
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ error: "Toy not found" });
+    }
+    res.json({ message: "Toy deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};

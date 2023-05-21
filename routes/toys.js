@@ -7,5 +7,6 @@ router.get("/categorynames", toysController.findCategory);
 router.get("/:id", toysController.findById);
 router.post("/", toysController.insertOne);
 router.put("/:id", toysController.findAndUpdate);
+router.delete("/:id", toysController.findByIdAndDelete);
 
 module.exports = router;
