@@ -57,6 +57,19 @@ module.exports.findAndUpdate = async (req, res) => {
   }
 };
 
+module.exports.dealsOfDayUpdate = async (req, res) => {
+  const id = req.params.id;
+  const filter = { _id: new ObjectId(id) };
+  const updatedData = req.body;
+  const updateDoc = {
+    $set: {
+      dealsOfTheDay: updatedData.dealsOfTheDay,
+    },
+  };
+  const result = await toysCollection.updateOne(filter, updateDoc);
+  res.send(result);
+};
+
 //delete operation
 
 module.exports.findByIdAndDelete = async (req, res) => {
