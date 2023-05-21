@@ -5,7 +5,6 @@ const { ObjectId } = require("mongodb");
 //find all by category name
 module.exports.findAllByCategory = async (req, res) => {
   const limit = parseInt(req.query.limit);
-  console.log("params", req.query.limit);
   let query =
     req.params.categoryName.toLowerCase() === "all"
       ? {}
@@ -25,9 +24,23 @@ module.exports.findAll = async (req, res) => {
 };
 //find all product by email
 module.exports.findAllByEmail = async (req, res) => {
-  let toys = await toysCollection
-    .find({ SellerEmail: req.params.sellerEmail })
-    .toArray();
+  const sort = req.query.sort;
+  const pipeline = [
+    {
+      $match: {
+        SellerEmail: req.params.sellerEmail,
+      },
+    },
+    {
+      $addFields: {
+        numericPrice: { $toDouble: { $substr: ["$Price", 1, -1] } },
+      },
+    },
+    {
+      $sort: { numericPrice: sort === "asc" ? 1 : -1 },
+    },
+  ];
+  let toys = await toysCollection.aggregate(pipeline).toArray();
   res.send(toys);
 };
 
